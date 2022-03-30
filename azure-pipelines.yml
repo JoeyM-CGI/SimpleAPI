@@ -40,6 +40,8 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
+- task: SonarQubeAnalyze@5
+
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
   inputs:
