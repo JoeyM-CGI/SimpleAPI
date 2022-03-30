@@ -16,6 +16,13 @@ variables:
 
 steps:
 
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'Azure DevOps'
+    scannerMode: 'MSBuild'
+    projectKey: 'AzureDevOps'
+
+- task: SonarQubeAnalyze@5
 - task: DotNetCoreCLI@2
   inputs:
     command: test
@@ -40,7 +47,6 @@ steps:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
 
-- task: SonarQubeAnalyze@5
 
 - task: DotNetCoreCLI@2
   displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
