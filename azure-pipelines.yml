@@ -16,18 +16,13 @@ variables:
 
 steps:
 
-- task: SonarQubePrepare@5
+- task: SnykSecurityScan@1
   inputs:
-    SonarQube: 'Azure DevOps'
-    scannerMode: 'MSBuild'
-    projectKey: 'AzureDevOps'
-
-- task: SonarQubeAnalyze@5
-- task: DotNetCoreCLI@2
-  inputs:
-    command: test
-    projects: '**/*Test/*.csproj'
-    arguments: '--configuration $(buildConfiguration)'
+    serviceConnectionEndpoint: 'SnykConnection'
+    testType: 'app'
+    monitorWhen: 'always'
+    failOnIssues: false
+    projectName: 'AzureDevOps'
 
 - task: NuGetToolInstaller@1
 
