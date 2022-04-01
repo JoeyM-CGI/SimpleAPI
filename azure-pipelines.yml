@@ -15,17 +15,17 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
-- task: SonarQubePrepare@5
-  inputs:
-    SonarQube: 'SonarConnect'
-    scannerMode: 'MSBuild'
-    projectKey: 'AzureDevOpsDemo_AzureDevOpsDemo'
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
   inputs:
     restoreSolution: '$(solution)'
-
+- task: SonarQubePrepare@5
+  inputs:
+    SonarQube: 'Connection'
+    scannerMode: 'MSBuild'
+    projectKey: 'AzureDevOpsDemo_AzureDevOpsDemo'
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
