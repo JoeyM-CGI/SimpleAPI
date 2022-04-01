@@ -32,24 +32,16 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
-- task: SnykSecurityScan@1
-  inputs:
-    serviceConnectionEndpoint: 'SnykConnection'
-    testType: 'app'
-    monitorWhen: 'always'
-    failOnIssues: false
-    projectName: 'AzureDevOps'
-
-
 - task: DotNetCoreCLI@2
-  displayName: 'dotnet publish --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)'
   inputs:
-    command: publish
-    publishWebProjects: false
-    projects: 'src/SimpleAPI/SimpleAPI.csproj'
-    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
-    zipAfterPublish: true
+    command: test
+    projects: '**/*Tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'
+
+
+
+
+  
 
 - task: PublishBuildArtifacts@1
   displayName: 'publish artifacts'
