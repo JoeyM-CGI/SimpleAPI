@@ -23,7 +23,7 @@ steps:
     restoreSolution: '$(solution)'
 - task: SonarQubePrepare@5
   inputs:
-    SonarQube: 'AzureDevOpsConnect'
+    SonarQube: 'AzureConnection'
     scannerMode: 'MSBuild'
     projectKey: 'AzureDevOpsDemo_AzureDevOpsDemo'
 - task: VSBuild@1
