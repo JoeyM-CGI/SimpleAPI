@@ -32,16 +32,17 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
-
+- task: SnykSecurityScan@1
+  inputs:
+    serviceConnectionEndpoint: 'SnyDevOps'
+    testType: 'app'
+    monitorWhen: 'always'
+    failOnIssues: false
 - task: DotNetCoreCLI@2
   inputs:
     command: test
     projects: '**/*Test/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
-
-
-
-
   
 
 - task: PublishBuildArtifacts@1
