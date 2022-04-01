@@ -17,10 +17,9 @@ variables:
 steps:
 - task: SonarQubePrepare@5
   inputs:
-    SonarQube: 'AzureDemoConnect'
+    SonarQube: 'SonarConnect'
     scannerMode: 'MSBuild'
     projectKey: 'AzureDevOpsDemo_AzureDevOpsDemo'
-    projectName: 'AzureDevOps'
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
