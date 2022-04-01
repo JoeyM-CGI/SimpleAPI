@@ -16,20 +16,6 @@ variables:
 
 steps:
 
-- task: SnykSecurityScan@1
-  inputs:
-    serviceConnectionEndpoint: 'SnykConnection'
-    testType: 'app'
-    monitorWhen: 'always'
-    failOnIssues: false
-    projectName: 'AzureDevOps'
-
-- task: NuGetToolInstaller@1
-
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
-
 - task: VSBuild@1
   inputs:
     solution: '$(solution)'
@@ -41,6 +27,19 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+- task: NuGetToolInstaller@1
+
+- task: NuGetCommand@2
+  inputs:
+    restoreSolution: '$(solution)'
+
+- task: SnykSecurityScan@1
+  inputs:
+    serviceConnectionEndpoint: 'SnykConnection'
+    testType: 'app'
+    monitorWhen: 'always'
+    failOnIssues: false
+    projectName: 'AzureDevOps'
 
 
 - task: DotNetCoreCLI@2
