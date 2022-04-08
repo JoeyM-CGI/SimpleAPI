@@ -13,7 +13,7 @@ public class UnitTest1
    public void GetReturnsWeather()
    {
        var returnValue = controller.Get(1);
-        Assert.Equal("This is the wrong value", returnValue.Value);
+        Assert.Equal("Joey", returnValue.Value);
    }     
 
     [Fact]
