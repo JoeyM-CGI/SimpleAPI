@@ -9,7 +9,7 @@ public class WeatherForecastController : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<string>> Get()
     {
-       return new string[] {"Value1","Value2" };
+       return new string[] {"Cloudy","Snow" };
     }
 
     [HttpGet("{id}")]
